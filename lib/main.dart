@@ -6,7 +6,6 @@ import 'screens/screens.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-
   await Preferences.init();
 
   runApp(const MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       title: 'User Preferences',
       initialRoute: '/home',
-      theme: ThemeData.light(),
+      theme: Preferences.isDarkMode ? ThemeData.dark() : ThemeData.light(),
       routes: {
         '/home': (BuildContext context) => HomeScreen(),
         '/settings': (BuildContext context) => SettingsScreen(),

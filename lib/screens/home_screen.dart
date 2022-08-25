@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_preferences/share_preferences/preferences.dart';
 
 import '../widgets/widgets.dart';
 
@@ -14,15 +15,16 @@ class HomeScreen extends StatelessWidget{
       drawer: SideMenuWidget(), //Drawer is a widget that is used to display a navigation menu.
       body: Center(
         child: Container(
+          padding: EdgeInsets.all(15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _Content(title: 'Dark Mode', state : ''),
+              _Content(title: 'Dark Mode', state : Preferences.isDarkMode.toString()),
               SizedBox(height: 20),
-              _Content(title: 'Gender', state : ''),
+              _Content(title: 'Gender', state : Preferences.gender.toString()),
               SizedBox(height: 20),
-              _Content(title: 'User Name', state : ''),
+              _Content(title: 'User Name', state : Preferences.name),
             ],
           ),
         ),
@@ -42,17 +44,19 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      //ROUND CORNERS
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      elevation: 5,
-      child:Container(
-        padding: EdgeInsets.all(20),
-          child: Text('${this.title} : ${this.state}', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),)
-      ),
+    return Flexible(
+      child: Card(
+        //ROUND CORNERS
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 5,
+        child:Container(
+          padding: EdgeInsets.all(30),
+            child: Text('${this.title} : ${this.state}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),maxLines: 2, overflow: TextOverflow.ellipsis,),
+        ),
 
+      ),
     );
   }
 }

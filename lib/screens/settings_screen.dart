@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:user_preferences/share_preferences/preferences.dart';
 
 import '../widgets/widgets.dart';
 
@@ -12,9 +13,8 @@ class SettingsScreen extends StatefulWidget{
 
 class _SettingsScreenState extends State<SettingsScreen> {
 
-  bool isDarkmode = false;
-  int gender = 1;
-  String name = '';
+  Preferences preferences = Preferences();
+
 
 
   @override
@@ -36,7 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               //add elevation to give it a 3D effect
-              elevation: 5,
+              elevation: 15,
               child: Container(
                 padding: EdgeInsets.all(20),
                 child: Column(
@@ -47,9 +47,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Text('Theme', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                     SwitchListTile.adaptive(
                       title: Text('Dark Mode', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                      value: isDarkmode,
+                      value: Preferences.isDarkMode,
                       onChanged: (value) {
-                        isDarkmode = value;
+                        Preferences.isDarkMode = value;
                         setState(() {});
                       },
                     ),
@@ -58,10 +58,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SizedBox(width: 60),
                     RadioListTile<int>(
                         value: 1,
-                        groupValue: gender,
+                        groupValue: Preferences.gender,
                         title: const Text('Masculine', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                         onChanged: (value){
-                          gender = value??1;
+                          Preferences.gender = value ?? 1;
                           setState(() {});
                         },
                     ),
@@ -69,10 +69,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SizedBox(width: 20),
                     RadioListTile<int>(
                       value: 2,
-                      groupValue: gender,
+                      groupValue: Preferences.gender,
                       title: const Text('Feminine', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                       onChanged: (value){
-                        gender = value??2;
+                        Preferences.gender = value ?? 2;
                         setState(() {});
                       },
                     ),
@@ -80,10 +80,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SizedBox(width: 20),
                     RadioListTile<int>(
                       value: 3,
-                      groupValue: gender,
+                      groupValue: Preferences.gender,
                       title: const Text('Other', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                       onChanged: (value){
-                        gender = value??3;
+                        Preferences.gender = value ?? 3;
                         setState(() {});
                       },
                     ),
@@ -93,9 +93,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SizedBox(width: 20),
 
                     TextFormField(
-                      initialValue: "",
+                      initialValue: Preferences.name,
                       onChanged: (value){
-                        name = value;
+                        Preferences.name = value;
                         setState(() {});
                       },
                       decoration: InputDecoration(
