@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:user_preferences/share_preferences/preferences.dart';
 
 import 'screens/screens.dart';
 
-void main(){
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Preferences.init();
+
   runApp(const MyApp());
 }
 
@@ -17,6 +23,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       title: 'User Preferences',
       initialRoute: '/home',
+      theme: ThemeData.light(),
       routes: {
         '/home': (BuildContext context) => HomeScreen(),
         '/settings': (BuildContext context) => SettingsScreen(),

@@ -42,8 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 30),
-                    Text('SETTINGS', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
+
                     SizedBox(height: 40),
                     Text('Theme', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                     SwitchListTile.adaptive(
